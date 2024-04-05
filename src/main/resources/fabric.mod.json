@@ -1,0 +1,42 @@
+{
+  "schemaVersion": 1,
+  "id": "eventpokemon",
+  "version": "${version}",
+
+  "name": "Event Pokemon",
+  "description": "Create exclusive pokemons like the ones that pokemon company gives through events",
+  "authors": [
+    "KhalidNecron"
+  ],
+  "contact": {
+    "homepage": "https://fabricmc.net/",
+    "sources": "https://github.com/FabricMC/fabric-example-mod"
+  },
+  "license": "MIT",
+  "icon": "assets/eventpokemon/icon.png",
+
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      {
+        "adapter": "kotlin",
+        "value": "net.khalidnecron.eventpokemon.EventPokemon"
+      }
+    ]
+  },
+  "mixins": [
+    "eventpokemon.mixins.json"
+  ],
+
+  "depends": {
+    "fabricloader": ">=0.15.7",
+    "fabric-api": "*",
+    "minecraft": "~${minecraft_version}",
+    "java": ">=17",
+    "fabric-language-kotlin": ">=1.10.10+kotlin.1.9.10",
+    "cobblemon": ">=1.4.1"
+  },
+  "suggests": {
+    "another-mod": "*"
+  }
+}

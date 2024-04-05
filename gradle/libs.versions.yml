@@ -1,0 +1,27 @@
+versions:
+
+  fabric-loader: 0.15.7
+  fabric-api: 0.92.0+1.20.1
+  fabric-kotlin: 1.10.10+kotlin.1.9.10
+
+  cobblemon: 1.4.1+
+
+dependencies:
+
+  fabricLoader:
+    group: net.fabricmc
+    name: fabric-loader
+    version: { ref: fabric-loader }
+  fabricApi:
+     group: net.fabricmc.fabric-api
+     name: fabric-api
+     version: { ref: fabric-api }
+  fabricKotlin:
+     group: net.fabricmc
+     name: fabric-language-kotlin
+     version: { ref: fabric-kotlin }
+
+  cobblemonFabric:
+    group: com.cobblemon
+    name: fabric
+    version: { ref: cobblemon }
