@@ -4,19 +4,16 @@ import com.cobblemon.mod.common.Cobblemon
 import com.cobblemon.mod.common.CobblemonItems
 import com.cobblemon.mod.common.api.moves.BenchedMove
 import com.cobblemon.mod.common.api.moves.Moves
-import com.cobblemon.mod.common.api.permission.PermissionLevel
 import com.cobblemon.mod.common.api.text.red
 import com.cobblemon.mod.common.item.CobblemonItem
 import com.cobblemon.mod.common.pokemon.Gender
 import com.cobblemon.mod.common.util.commandLang
-import com.cobblemon.mod.common.util.permission
 import com.cobblemon.mod.common.util.toProperties
 import com.mojang.brigadier.Command
 import com.mojang.brigadier.CommandDispatcher
 import com.mojang.brigadier.arguments.IntegerArgumentType
 import com.mojang.brigadier.context.CommandContext
 import com.mojang.brigadier.exceptions.DynamicCommandExceptionType
-import net.khalidnecron.eventpokemon.api.permission.EventPokemonPermission
 import net.khalidnecron.eventpokemon.util.PokeEvents
 import net.khalidnecron.eventpokemon.util.Pokemons
 import net.minecraft.server.command.CommandManager
@@ -79,13 +76,14 @@ object ClaimPokeEventCommand {
 
     fun register(dispatcher: CommandDispatcher<ServerCommandSource>) {
         val claimPokeEventCommand = CommandManager.literal(NAME)
-            .permission(EventPokemonPermission("command.claimpokeevent", PermissionLevel.NONE))
+            .requires{ it.hasPermissionLevel(0) }
             .then(CommandManager.argument("number", IntegerArgumentType.integer())
                 .executes { execute(it) }
             )
         dispatcher.register(claimPokeEventCommand)
     }
 
+    @Suppress("SameReturnValue")
     private fun execute(context: CommandContext<ServerCommandSource>): Int {
         val number = IntegerArgumentType.getInteger(context, NUMBER)
 
