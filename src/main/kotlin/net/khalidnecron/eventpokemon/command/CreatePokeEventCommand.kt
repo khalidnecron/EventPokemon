@@ -1,15 +1,12 @@
 package net.khalidnecron.eventpokemon.command
 
-import com.cobblemon.mod.common.api.permission.PermissionLevel
 import com.cobblemon.mod.common.command.argument.PartySlotArgumentType
-import com.cobblemon.mod.common.util.permission
 import com.cobblemon.mod.common.util.player
 import com.mojang.brigadier.Command
 import com.mojang.brigadier.CommandDispatcher
 import com.mojang.brigadier.context.CommandContext
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
-import net.khalidnecron.eventpokemon.api.permission.EventPokemonPermission
 import net.khalidnecron.eventpokemon.util.EVs
 import net.khalidnecron.eventpokemon.util.IVs
 import net.khalidnecron.eventpokemon.util.PokeEvents
@@ -28,7 +25,7 @@ object CreatePokeEventCommand {
 
     fun register(dispatcher: CommandDispatcher<ServerCommandSource>) {
         val createPokeEventCommand = CommandManager.literal(NAME)
-            .permission(EventPokemonPermission("command.createpokeevent", PermissionLevel.CHEAT_COMMANDS_AND_COMMAND_BLOCKS))
+            .requires { it.hasPermissionLevel(2) }
               .then(CommandManager.argument(PLAYER, EntityArgumentType.player())
                   .then(CommandManager.argument(SLOT, PartySlotArgumentType.partySlot())
                     .executes { execute(it, it.player()) }
